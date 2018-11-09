@@ -1,10 +1,10 @@
 Package: iloc
 Type: Package
-Title: Maps indigenous locations and returns statistics
+Title: Maps indigenous locations and returns statistics.
 Version: 0.1
 Author: James Conigrave
 Maintainer: james conigrave <james.conigrave@gmail.com>
-Description: Provides functions for sampling indigenous locations in Australia
+Description: Provides functions for sampling indigenous locations in Australia.
 Depends: R(>= 2.15)
 Imports: dplyr (>= 0.7.3), magrittr (>= 1.5),Conigrave (>= 0.4.2),raster (>= 2.6-7),ggrepel (>= 0.8.0),ggplot2 (>= 2.1.0),ggmap (>= 2.7.903), tibble (>= 1.4.2)
 License: GPL-3
