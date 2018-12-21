@@ -1,4 +1,4 @@
-# Conigrave
+# iloc
 This package provides demographics and maps of ABS Indigenous Locations (ILOCs) based on 2016 census data.
 Downloading this package may (definitely will) take a while. This package includes compressed census data and shape files.
 

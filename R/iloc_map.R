@@ -152,8 +152,8 @@ iloc_map = function(iloc,
       f_65_plus,
       m_65_plus
     ) %>%
-    mutate(f_16_24 = round(f_16_24 * 8 / 9, 0),
-           m_16_24 = round(m_16_24 * 8 / 9, 0))
+    mutate(f_16_24 = round(f_16_24 * 9/10, 0),
+           m_16_24 = round(m_16_24 * 9/10, 0))
 adjusted_demog$total = rowSums(adjusted_demog[,-1],na.rm=T)
 
   # Get map base ####
