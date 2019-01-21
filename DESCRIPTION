@@ -10,4 +10,4 @@ Imports: dplyr (>= 0.7.3), magrittr (>= 1.5),Conigrave (>= 0.4.2),raster (>= 2.6
 License: GPL-3
 Encoding: UTF-8
 LazyData: yes
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1

@@ -29,6 +29,8 @@ iloc_map = function(iloc,
                     map = T,
                     ...) {
   #START FUNCTION
+  iloc = iloc_find(iloc) #get all matches
+
 
   ##Helper function(s)
   find_postcodes = function(suburb, simple_shapes, simple_poa) {
@@ -98,7 +100,7 @@ iloc_map = function(iloc,
       max = length(suburb_data$suburb),
       style = 3
     )
-    suburb_data$postcodes = lapply(seq_along(suburb_data$suburb), function(x) {
+    suburb_data$postcode = lapply(seq_along(suburb_data$suburb), function(x) {
       pc = find_postcodes(suburb_data$suburb[x],
                           simple_shapes = shapes,
                           simple_poa = poa)
