@@ -8,6 +8,11 @@
 #' @param postcodes bool. If True, postcodes will be output for suburbs.
 #' @param gap numeric. Adds this to long and lat. Larger numbers result in larger displayed area
 #' @param map bool. If TRUE, this function will output a map.
+#' @param label bool. If TRUE \(default\) the largest suburbs will be labelled.
+#' @param left_adjust a numeric.
+#' @param bottom_adjust a numeric.
+#' @param right_adjust a numeric.
+#' @param top_adjust a numeric.
 #' @param ... extra arguments can be supplied to get_stamenmap.
 #' @import ggmap
 #' @import ggplot2
@@ -27,6 +32,11 @@ iloc_map = function(iloc,
                     postcodes = T,
                     gap = .07,
                     map = T,
+                    label = T,
+                    left_adjust = 0,
+                    bottom_adjust = 0,
+                    right_adjust = 0,
+                    top_adjust = 0,
                     ...) {
   #START FUNCTION
   iloc = iloc_find(iloc) #get all matches
@@ -162,10 +172,10 @@ adjusted_demog$total = rowSums(adjusted_demog[,-1],na.rm=T)
   if (map == T) {
     map = get_stamenmap(
       bbox = c(
-        left = min(shp_tb$long, na.rm = T) - gap,
-        bottom = min(shp_tb$lat, na.rm = T) - gap,
-        right = max(shp_tb$long, na.rm = T) + gap,
-        top = max(shp_tb$lat, na.rm = T) + gap
+        left = min(shp_tb$long, na.rm = T) - gap + left_adjust,
+        bottom = min(shp_tb$lat, na.rm = T) - gap + bottom_adjust,
+        right = max(shp_tb$long, na.rm = T) + gap + right_adjust,
+        top = max(shp_tb$lat, na.rm = T) + gap + top_adjust
       )
       ,
       maptype = maptype,
@@ -200,21 +210,25 @@ adjusted_demog$total = rowSums(adjusted_demog[,-1],na.rm=T)
         aes(x = long, y = lat, group = group),
         color = "black",
         size = .7
-      ) +
-      geom_label_repel(
-        data = suburb_data %>%
-          data.frame() %>%
-          mutate(limit = as.numeric(as.character(scale(
-            persons
-          )))) %>%
-          dplyr::filter(limit > 1.5),
-        aes(x = lon, y = lat, label = suburb),
-        direction = "y",
-        nudge_x = -0.0125,
-        hjust = 1,
-        size = 2,
-        alpha = 0.85
-      ) +
+      )
+
+      if(label){
+     final_map = final_map + geom_label_repel(
+          data = suburb_data %>%
+            data.frame() %>%
+            mutate(limit = as.numeric(as.character(scale(
+              persons
+            )))) %>%
+            dplyr::filter(limit > 1.5),
+          aes(x = lon, y = lat, label = suburb),
+          direction = "y",
+          nudge_x = -0.0125,
+          hjust = 1,
+          size = 2,
+          alpha = 0.85
+        )
+      }
+      final_map = final_map +
       scale_fill_gradient(low = "#efebe9", high = "#4a148c") +
       scale_color_gradient(low = "#0D47A1", high = "#F50057") +
       labs(
@@ -238,7 +252,8 @@ adjusted_demog$total = rowSums(adjusted_demog[,-1],na.rm=T)
     map = final_map,
     suburb_demog = suburb_data,
     iloc_demog = demographics[, -1],
-    iloc_demog_adj = adjusted_demog
+    iloc_demog_adj = adjusted_demog,
+    shape_table= shp_tb
   )
 
 } #end of function
@@ -250,4 +265,6 @@ globalVariables(c(".","ILOC_NAME","SSC_CODE_2016","Indigenous_P_Tot_M",
                   "ILOC_CODE_2016","A_0_4_Indig_F","A_5_14_Indig_F","A_5_14_Indig_M",
                   "A_15_24_Indig_F","A_15_24_Indig_M",'A_25_44_Indig_M','A_45_64_Indig_F',
                   'A_45_64_Indig_M','A_65_over_Indig_F','A_65_over_Indig_M',"group","female_p",
-                  "limit","lon","SSC_NAME16","A_0_4_Indig_M","A_25_44_Indig_F"))
+                  "limit","lon","SSC_NAME16","A_0_4_Indig_M","A_25_44_Indig_F","id","IL_name",
+                  "f_15_24", "f_16_24", "f_25_44", "f_45_64", "f_65_plus", "m_15_24", "m_25_44", "m_45_64", "m_65_plus",
+                  "m_16_24","shp_tb"))

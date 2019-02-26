@@ -5,7 +5,8 @@
 \title{iloc_map}
 \usage{
 iloc_map(iloc, maptype = "watercolor", zoom = 12, postcodes = T,
-  gap = 0.07, map = T, ...)
+  gap = 0.07, map = T, label = T, left_adjust = 0,
+  bottom_adjust = 0, right_adjust = 0, top_adjust = 0, ...)
 }
 \arguments{
 \item{iloc}{A charcter vector. The name of one, or more ILOC regions}
@@ -19,6 +20,16 @@ iloc_map(iloc, maptype = "watercolor", zoom = 12, postcodes = T,
 \item{gap}{numeric. Adds this to long and lat. Larger numbers result in larger displayed area}
 
 \item{map}{bool. If TRUE, this function will output a map.}
+
+\item{label}{bool. If TRUE \(default\) the largest suburbs will be labelled.}
+
+\item{left_adjust}{a numeric.}
+
+\item{bottom_adjust}{a numeric.}
+
+\item{right_adjust}{a numeric.}
+
+\item{top_adjust}{a numeric.}
 
 \item{...}{extra arguments can be supplied to get_stamenmap.}
 }
