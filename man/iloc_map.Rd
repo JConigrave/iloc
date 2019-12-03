@@ -4,8 +4,8 @@
 \alias{iloc_map}
 \title{iloc_map}
 \usage{
-iloc_map(iloc, maptype = "watercolor", zoom = 12, postcodes = T,
-  gap = 0.07, map = T, label = T, left_adjust = 0,
+iloc_map(iloc = "Port Adelaide", maptype = "watercolor", zoom = 12,
+  postcodes = T, gap = 0.07, map = T, label = T, left_adjust = 0,
   bottom_adjust = 0, right_adjust = 0, top_adjust = 0, ...)
 }
 \arguments{

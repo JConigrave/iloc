@@ -313,9 +313,6 @@ demographics
 }
 
 
-
-
-
 ### Global variables defined so that dpylr will not throw errors
 globalVariables(c(".","ILOC_NAME","SSC_CODE_2016","Indigenous_P_Tot_M",
                   "Indigenous_P_Tot_F","Indigenous_P_Tot_P","lat","long","name",

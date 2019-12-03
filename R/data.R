@@ -57,6 +57,13 @@ NULL
 
 "iloc_names"
 
+#' data_iarea
+#'
+#' indigenous area data
+#'
+#' @format a data.frame.
+
+"data_iarea"
 
 
 
