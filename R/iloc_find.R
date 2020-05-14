@@ -8,6 +8,12 @@
 iloc_find = function(x){
 
   names = as.character(iloc::iloc_names[[1]])
-  as.character(names[grepl(x,names)])
+
+  out <- sapply(x, function(i){
+    as.character(names[grepl(i,names)])
+  })
+
+  unique(unlist(out))
+
 
 }
