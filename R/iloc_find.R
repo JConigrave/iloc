@@ -9,6 +9,10 @@ iloc_find = function(x){
 
   names = as.character(iloc::iloc_names[[1]])
 
+  #escape special characters
+  x = gsub("\\(","\\\\(" , x)
+  x = gsub("\\)","\\\\)" , x)
+
   out <- sapply(x, function(i){
     as.character(names[grepl(i,names)])
   })
